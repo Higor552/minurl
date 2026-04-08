@@ -1,54 +1,60 @@
+import express from "express";
 import { prisma } from "./lib/prisma.js";
 
-async function testarBanco() {
+const app = express();
+
+// Isso permite que o servidor entenda dados enviados em formato JSON
+app.use(express.json());
+
+// Rota básica para testar se o servidor está no ar
+app.get("/", (req, res) => {
+  res.send("Servidor de Monitoramento de Jogos Narrativos rodando!");
+});
+
+// 1. Rota para CRIAR um usuário (substitui aquela primeira parte do seu teste)
+app.post("/usuarios", async (req, res) => {
   try {
-    console.log("1. Criando usuário...");
+    const { email, passwordHash } = req.body; // Pega os dados que vieram na requisição
+    
     const usuario = await prisma.user.create({
       data: {
-        email: "higor@exemplo.com",
-        passwordHash: "senha123",
+        email,
+        passwordHash,
       },
     });
-    console.log("Usuário criado:", usuario.id);
+    
+    res.status(201).json(usuario);
+  } catch (erro) {
+    res.status(500).json({ erro: "Falha ao criar usuário" });
+  }
+});
 
-    console.log("\n2. Criando jogo...");
-    const jogo = await prisma.game.create({
-      data: {
-        title: "Life is Strange",
-        developer: "Dontnod",
-      },
-    });
-    console.log("Jogo criado:", jogo.id);
-
-    console.log("\n3. Registrando uma jogatina...");
-    const jogatina = await prisma.jogatina.create({
-      data: {
-        userId: usuario.id,
-        gameId: jogo.id,
-        decisaoPrincipal: "Sacrificou Arcadia Bay",
-        finalObtido: "Fugiu com a Chloe",
-      },
-    });
-    console.log("Jogatina salva:", jogatina.id);
-
-    console.log("\n4. Buscando o histórico completo do usuário...");
+// 2. Rota para BUSCAR o histórico de um usuário pelo ID
+app.get("/usuarios/:id/historico", async (req, res) => {
+  try {
+    const userId = parseInt(req.params.id); // Pega o ID da URL
+    
     const historico = await prisma.user.findUnique({
-      where: { id: usuario.id },
+      where: { id: userId },
       include: {
         jogatinas: {
           include: { game: true }
         }
       }
     });
-    console.log(JSON.stringify(historico, null, 2));
-
+    
+    if (!historico) {
+      return res.status(404).json({ erro: "Usuário não encontrado" });
+    }
+    
+    res.json(historico);
   } catch (erro) {
-    console.error("Deu algum erro:", erro);
-  } finally {
-    // Desconecta do banco no final do teste
-    await prisma.$disconnect();
+    res.status(500).json({ erro: "Falha ao buscar histórico" });
   }
-}
+});
 
-// Executa a função
-testarBanco();
+// Define a porta onde o servidor vai rodar e "liga" ele
+const PORT = 3000;
+app.listen(PORT, () => {
+  console.log(`🚀 Servidor rodando na porta http://localhost:${PORT}`);
+});
