@@ -1,7 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
-
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
@@ -127,4 +126,14 @@
   html {
     @apply font-sans;
   }
+}
+@font-face {
+  font-family: 'Dudu';
+  src: url('/fonts/DuduCalligraphy.ttf') format('truetype'); 
+  font-weight: normal;
+  font-style: normal;
+}
+
+.font-dudu {
+  font-family: 'Dudu', cursive !important;
 }
