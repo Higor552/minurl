@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button"
 
 export function Navbar() {
     return (
-        <header className="border-b bg-blue-300 w-full">
+        <header className="border-b bg-sky-100 w-full">
             <div className="flex h-16 items-center px-4 md:px-8 justify-between font-dudu">
 
                 
@@ -11,7 +11,7 @@ export function Navbar() {
                     <Button variant="ghost"  className="font-medium ">
                         <Link href="/login">Entrar</Link>
                     </Button>
-                    <Button asChild className="font-medium px-6">
+                    <Button className="font-medium px-6">
                         <Link href="/cadastro">Cadastrar</Link>
                     </Button>
                 </div>
@@ -19,7 +19,9 @@ export function Navbar() {
                 
                 <div className="flex items-center">
                     <h1 className="text-2xl font-bold tracking-tight ">
+                        <a href="./">
                         O Efeito Borboleta
+                        </a>
                     </h1>
                 </div>
 

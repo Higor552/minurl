@@ -1,4 +1,4 @@
-import { prisma } from "./lib/prisma.js";
+import { prisma } from "../lib/prisma.js";
 
 
 async function criarUsuario(email, passwordHash) {
@@ -32,7 +32,7 @@ async function buscarHistorico(userId) {
 }
 
 async function main() {
-  const novoUsuario = await criarUsuario("joao@exemplo.com", "hashDeSenha123");
+  const novoUsuario = await criarUsuario("m@examplo.com", "hashDeSenha123");
   await buscarHistorico(novoUsuario.id);
 }
 

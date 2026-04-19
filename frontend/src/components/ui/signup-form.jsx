@@ -37,7 +37,7 @@ export function SignupForm({ className, ...props }) {
                                 <Input
                                     id="email"
                                     type="email"
-                                    placeholder="max@arcadiabay.com"
+                                    placeholder="m@examplo.com"
                                     required
                                 />
                             </Field>

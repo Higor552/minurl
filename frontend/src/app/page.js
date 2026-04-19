@@ -1,22 +1,22 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Navbar } from "@/components/ui/topbar";
+
 import { Search } from "lucide-react";
 export default function Home() {
   return (
     <div className="font-dudu">
-      <Navbar />
-        <section className="w-full py-24 md:py-32 lg:py-48 bg-blue-100 text-black flex flex-col items-center text-center px-4 border-b">
-          <h1 className="font-dudu text-5xl md:text-7xl lg:text-8xl font-bold tracking-wider mb-6 text-black">
+      
+        <section className="w-full py-24 md:py-32 lg:py-48 bg-linear-to-r from-pink-200 via-orange-200 to-blue-400 text-black flex flex-col items-center text-center px-4 border-b">
+          <h1 className=" text-5xl md:text-7xl lg:text-8xl font-bold tracking-wider mb-6 text-black">
             Cada Escolha Importa.
           </h1>
-          <p className="max-w-750px text-black text-lg md:text-xl mb-10 ">
+          <p className="max-w-750px text- text-lg md:text-xl mb-10 ">
             Registe as suas decisões, 
             compare o sua moral com milhares de jogadores.
           </p>
 
         </section>
-        <section className="w-full py-20 bg-white flex flex-col items-center px-4">
+        <section className="w-full py-20 bg-linear-to-r from-pink-200 via-orange-200 to-blue-400 flex flex-col items-center px-4">
         <div className="max-w-3xl w-full text-center space-y-8">
           <div >
             <h2 className="text-3xl font-bold tracking-tight">Comece sua análise</h2>
@@ -34,7 +34,6 @@ export default function Home() {
             />
           </div>
 
-         
         </div>
       </section>
     </div>
